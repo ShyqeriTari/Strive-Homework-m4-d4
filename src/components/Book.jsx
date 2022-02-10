@@ -21,11 +21,13 @@ export default class Book extends Component {
     return (
       <Col
         xs={12}
-        md={3}
-        className="m-1 p-1 card-container"
+        md={4}
+        lg={3}
+        xl={2}
+        className="m-auto p-1 card-container"
         onClick={this.handleColorChange}
       >
-        <div className="card bg-dark" onClick={this.handleClick}>
+        <div className="card bg-dark m-auto" onClick={this.handleClick}>
 
           <MyBadge branding="Delete Book" color="dark" className="badge" />
           <img

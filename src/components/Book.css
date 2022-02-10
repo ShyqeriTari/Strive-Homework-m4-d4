@@ -8,11 +8,16 @@
 .img {
   position: relative;
   height: 100%;
-  object-fit: cover;
+  min-height: 300px;
+  max-height: 300px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border-color: white;
 }
 
 .card{
-  border-color: gray;
+  width: 200px;
+  border-color: white;
 }
 
 .card-container{
@@ -22,3 +27,11 @@
 .card-container:hover {
   transform: scale(1.05); 
 }
+
+h4{
+  width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+

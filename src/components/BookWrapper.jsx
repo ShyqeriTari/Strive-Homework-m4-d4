@@ -18,9 +18,9 @@ export default class BookWrapper extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={{padding: '0px', margin: 'auto', paddingBottom:'100px'}}>
         <>
-          <InputGroup size="sm" className="mb-3">
+          <InputGroup size="sm" className="mb-3 m-auto">
             <FormControl
               onChange={e => this.handleChange(e.target.value)}
               aria-label="Small"
@@ -28,7 +28,7 @@ export default class BookWrapper extends Component {
             />
           </InputGroup>
         </>
-        <Row>
+        <Row className='m-auto'>
           {books
             .filter(book =>
               book.title
