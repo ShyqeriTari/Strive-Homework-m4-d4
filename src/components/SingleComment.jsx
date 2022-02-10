@@ -7,7 +7,20 @@ class SingleComment extends Component {
     state = {
         selected: false,
         comments: [],
+        id: ''
       }
+
+    //   handleDelete = async () => {
+    //     let httpFetch = 'https://striveschool-api.herokuapp.com/api/comments/'+ this.state.id
+    //     fetch(httpFetch, 
+    //     { method: 'DELETE', 
+    //     headers: {
+    //         'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNmJmZjgyZWExZDAwMTViYjA0NTMiLCJpYXQiOjE2NDQ1MDI2NjQsImV4cCI6MTY0NTcxMjI2NH0.3bwJaMRCEg1s4cjThEr8yeXG0YdhPLIx-13jL7aIGbc',
+    //     },
+    // }
+    //     )
+    //     .then(() =>console.log('Delete successful') );
+    //   }
 
       handleClick = () => { this.setState({ 
         ...this.state,
@@ -16,7 +29,6 @@ class SingleComment extends Component {
           componentDidMount = async () => {
 
            let httpFetch = 'https://striveschool-api.herokuapp.com/api/comments/'+ this.props.branding5
-            console.log("I'm fully mounted!")
             try {
               let response = await fetch(
                 httpFetch, {
@@ -27,7 +39,9 @@ class SingleComment extends Component {
               )
               if (response.ok) {
                 let data = await response.json()
+                console.log(data)
                 this.setState({
+                    
                     ...this.state.selected,
                  comments: data,
                 })
@@ -50,13 +64,19 @@ class SingleComment extends Component {
             {this.state.comments.map((comment, idx) =>
                 
                     <Col  key={idx + 1} xs={12}
-        md={4}
-        lg={2}
-        xl={2}>
+        md={6}
+        lg={4}
+        xl={3}>
                 <ListGroup.Item style={
-                    {fontSize:'12px'}
+                    {fontSize:'14px'}
                 }>{comment.comment}</ListGroup.Item>
-  <ListGroup.Item style={{fontSize:'12px'}}>{comment.rate}</ListGroup.Item>
+                {/* {this.setState({...this.state,
+                id : comment._id})} */}
+  <ListGroup.Item style={{fontSize:'14px'}}>{comment.rate}</ListGroup.Item>
+  <Button variant="danger" >Delete</Button>
+
+  {/* onClick={this.handleDelete} */}
+            
               </Col>
                 
                 
