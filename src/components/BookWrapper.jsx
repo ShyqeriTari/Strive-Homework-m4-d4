@@ -3,7 +3,7 @@ import { InputGroup, FormControl, Container, Row } from 'react-bootstrap'
 //import MyInput from './MyInput'
 
 import Book from './Book'
-import books from '../data/horror.json'
+import books from '../data/history.json'
 
 export default class BookWrapper extends Component {
   state = {
@@ -25,6 +25,7 @@ export default class BookWrapper extends Component {
               onChange={e => this.handleChange(e.target.value)}
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
+              placeholder='search for book title'
             />
           </InputGroup>
         </>

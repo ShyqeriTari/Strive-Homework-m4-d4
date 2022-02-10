@@ -3,6 +3,7 @@ import { Col } from 'react-bootstrap'
 import MyBadge from './MyBadge'
 import './Book.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import CommentArea from './CommentArea'
 
 export default class Book extends Component {
 
@@ -10,11 +11,10 @@ export default class Book extends Component {
     selected: false,
   }
 
-  handleClick = () => { this.setState({ selected: !this.state.selected }) }
+  handleClick = () => { this.setState({ selected: !this.state.selected })  }
 
   handleColorChange = (e) => {
-    this.state.selected === false ? e.currentTarget.style.backgroundColor = 'yellow' : e.currentTarget.style.backgroundColor = '#212529'
-
+    this.state.selected === false ? e.currentTarget.style.backgroundColor = 'coral' : e.currentTarget.style.backgroundColor = '#212529'
   }
 
   render() {
@@ -24,7 +24,7 @@ export default class Book extends Component {
         md={4}
         lg={3}
         xl={2}
-        className="m-auto p-1 card-container"
+        className="m-auto mb-3 card-container"
         onClick={this.handleColorChange}
       >
         <div className="card bg-dark m-auto" onClick={this.handleClick}>
@@ -36,7 +36,12 @@ export default class Book extends Component {
             alt={this.props.bookData.title}
           />
           <h4 className="bg-dark text-light">{this.props.bookData.title}</h4>
+          <h6 className="bg-dark text-light">{this.props.bookData.asin}</h6>
         </div>
+        <div>
+        {this.state.selected === true &&(
+        <CommentArea branding='d-block position-absolute' branding2={this.props.bookData.asin} />
+        )}</div>
       </Col>
     )
   }
