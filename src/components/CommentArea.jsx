@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap"
+import { Card, Col } from "react-bootstrap"
 import SingleComment from "./SingleComment"
 import AddComment from "./AddComment"
 

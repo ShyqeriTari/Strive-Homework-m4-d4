@@ -4,16 +4,20 @@ import { InputGroup, FormControl, Container, Row } from 'react-bootstrap'
 
 import Book from './Book'
 import books from '../data/history.json'
+import CommentArea from './CommentArea'
 
 export default class BookWrapper extends Component {
   state = {
     bookTitle: '',
-
+    id : ''
   }
 
+  changeId = (bookId) => {
+    this.setState({...this.state, id: bookId})
+  }
 
   handleChange = value => {
-    this.setState({ bookTitle: value })
+    this.setState({ ...this.state, bookTitle: value })
   }
 
   render() {
@@ -30,6 +34,7 @@ export default class BookWrapper extends Component {
           </InputGroup>
         </>
         <Row className='m-auto'>
+        <CommentArea branding2={this.state.id}/>
           {books
             .filter(book =>
               book.title
@@ -37,8 +42,9 @@ export default class BookWrapper extends Component {
                 .includes(this.state.bookTitle.toLowerCase())
             )
             .map(book => {
-              return <Book bookData={book} key={book.asin} />
+              return <Book bookData={book} key={book.asin} function={this.changeId}/>
             })}
+            
         </Row>
       </Container>
     )

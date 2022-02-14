@@ -21,9 +21,7 @@ export default class Book extends Component {
     return (
       <Col
         xs={12}
-        md={4}
-        lg={3}
-        xl={2}
+        md={6}
         className="m-auto mb-3 card-container"
         onClick={this.handleColorChange}
       >
@@ -34,14 +32,15 @@ export default class Book extends Component {
             className="d-block img-fluid img"
             src={this.props.bookData.img}
             alt={this.props.bookData.title}
+            onClick={(e) => this.props.function(this.props.bookData.asin)}
           />
           <h4 className="bg-dark text-light">{this.props.bookData.title}</h4>
           <h6 className="bg-dark text-light">{this.props.bookData.asin}</h6>
         </div>
-        <div>
+        {/* <div>
         {this.state.selected === true &&(
         <CommentArea branding='d-block position-absolute' branding2={this.props.bookData.asin} />
-        )}</div>
+        )}</div> */}
       </Col>
     )
   }
