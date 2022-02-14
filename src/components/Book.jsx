@@ -13,15 +13,15 @@ export default class Book extends Component {
 
   handleClick = () => { this.setState({ selected: !this.state.selected })  }
 
-  handleColorChange = (e) => {
-    this.state.selected === false ? e.currentTarget.style.backgroundColor = 'coral' : e.currentTarget.style.backgroundColor = '#212529'
-  }
+  // handleColorChange = (e) => {
+  //   this.state.selected === false ? e.currentTarget.style.backgroundColor = 'coral' : e.currentTarget.style.backgroundColor = '#212529'
+  // }
 
   render() {
     return (
       <Col
         xs={12}
-        md={6}
+        md={4}
         className="m-auto mb-3 card-container"
         onClick={this.handleColorChange}
       >

@@ -59,8 +59,7 @@ class SingleComment extends Component {
     render(){
         return( 
              <div>
-        <Button variant="primary" className='mb-3' onClick={this.handleClick}>Read comments</Button>
-        <div>{this.state.selected === true &&(
+        <div onClick={this.handleClick}>
         <ListGroup style={{width:'100%'}}>
             <Row>
             {this.state.comments.map((comment, idx) =>
@@ -75,7 +74,7 @@ class SingleComment extends Component {
                 )}
   </Row>
 
-</ListGroup>)}
+</ListGroup>
         </div>
         </div>
         )

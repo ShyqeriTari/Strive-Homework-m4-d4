@@ -9,7 +9,7 @@ import CommentArea from './CommentArea'
 export default class BookWrapper extends Component {
   state = {
     bookTitle: '',
-    id : ''
+    id : undefined,
   }
 
   changeId = (bookId) => {

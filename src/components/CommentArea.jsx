@@ -3,7 +3,8 @@ import SingleComment from "./SingleComment"
 import AddComment from "./AddComment"
 
 const CommentArea = (props) => (
-    <Card className={props.branding} style={{zIndex: '150', width:'40%', textAlign: 'center'}} key={props.branding2}>
+  <Col md={12}>
+    <Card className={props.branding}  style={{zIndex: '150', width:'100%', textAlign: 'center', marginBottom: '20px'}} key={props.branding2}>
   <Card.Header>Comments</Card.Header>
   <Card.Body>
     <blockquote className="blockquote mb-0">
@@ -12,6 +13,7 @@ const CommentArea = (props) => (
     </blockquote>
   </Card.Body>
 </Card>
+</Col>
 )
 
 export default CommentArea
