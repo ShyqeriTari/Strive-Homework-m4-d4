@@ -25,7 +25,7 @@ const  SingleComment = (props) => {
           )
           if (response.ok) {
             let data = await response.json()
-            console.log(data)
+            // console.log(data)
             setComments(data)
             
           } else {
