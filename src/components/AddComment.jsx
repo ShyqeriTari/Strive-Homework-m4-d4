@@ -1,44 +1,38 @@
 import {Button, Form} from 'react-bootstrap'
-import { Component } from 'react'
+import { useState} from 'react'
 
 
-class AddComment extends Component {
+const AddComment = () => {
 
-    state = {
-        selected: false,
-        comments:{
-            comment: '',
-        rate: '',
-        elementId:'',
-    },
+
+    const [selected, setSelected] = useState(false)
+
+    const [comments, setComments] = useState({
+      comment: '',
+  rate: '',
+  elementId:'',
+})
     
-      }
 
-      handleClick = () => { this.setState({ 
-        ...this.state.comments,
-          selected: !this.state.selected })  }
+     const handleClick = () => { 
+        setSelected(!selected)
+           }
 
-          handleChange = (property, value) => {
-            this.setState({
-                ...this.state,
-                comments:{
-                    ...this.state.comments,
-                [property] : value,
-                }
-              },
-            )
+      const handleChange = (property, value) => {
+            setComments({...comments,[property] : value})
+                    
           }
 
-handleSubmit = async (event) => {
+const handleSubmit = async (event) => {
 
     event.preventDefault()
-console.log(this.state.comments)
+console.log(comments)
     try {
         let response = await fetch(
           'https://striveschool-api.herokuapp.com/api/comments/',
           {
             method: 'POST',
-            body: JSON.stringify(this.state.comments),
+            body: JSON.stringify(comments),
             headers: {
                 'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNmJmZjgyZWExZDAwMTViYjA0NTMiLCJpYXQiOjE2NDQ1MDI2NjQsImV4cCI6MTY0NTcxMjI2NH0.3bwJaMRCEg1s4cjThEr8yeXG0YdhPLIx-13jL7aIGbc',
               'Content-type': 'application/json',
@@ -47,14 +41,12 @@ console.log(this.state.comments)
         )
         if (response.ok) {
           alert('comment added!')
-          this.setState({
-            ...this.state,
-            comments:{
+          setComments({
             comment: '',
             rate: '',
             elementId:''
-            }
-          })
+            })
+          
         } else {
          
           alert('something went wrong! please try again')
@@ -66,25 +58,25 @@ console.log(this.state.comments)
 
 }
 
-    render(){
+
         return( 
              <>
-        <Button variant="primary" className='mb-3' onClick={this.handleClick}>Add comment</Button>
+        <Button variant="primary" className='mb-3' onClick={handleClick}>Add comment</Button>
         <div>
-        {this.state.selected === true &&(
-     <Form onSubmit={this.handleSubmit}>  
+        {selected === true &&(
+     <Form onSubmit={handleSubmit}>  
      <Form.Group className="mb-3" controlId="formBasicEmail">
        <Form.Control type="text" placeholder="comment"  onChange={(e) =>
-                this.handleChange('comment', e.target.value)} />
+                handleChange('comment', e.target.value)} />
      </Form.Group>
    
      <Form.Group className="mb-3" controlId="formBasicPassword">
        <Form.Control type="text" placeholder="rate" onChange={(e) =>
-                this.handleChange('rate', e.target.value)}/>
+                handleChange('rate', e.target.value)}/>
      </Form.Group>
      <Form.Group className="mb-3" controlId="formBasicPassword">
        <Form.Control type="text" placeholder="Id"  onChange={(e) =>
-                this.handleChange('elementId', e.target.value)}/>
+                handleChange('elementId', e.target.value)}/>
      </Form.Group>
      <Button variant="success" type="submit" className='mb-3'>
       Add
@@ -95,6 +87,5 @@ console.log(this.state.comments)
         )
 }
 
-}
 
 export default AddComment

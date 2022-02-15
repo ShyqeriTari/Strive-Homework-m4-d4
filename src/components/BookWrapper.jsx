@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import {  useState } from 'react'
 import { InputGroup, FormControl, Container, Row } from 'react-bootstrap'
 //import MyInput from './MyInput'
 
@@ -6,27 +6,27 @@ import Book from './Book'
 import books from '../data/history.json'
 import CommentArea from './CommentArea'
 
-export default class BookWrapper extends Component {
-  state = {
-    bookTitle: '',
-    id : undefined,
+export default function BookWrapper (){
+ 
+
+  const [bookTitle, setBookTitle] = useState('')
+
+  const [id, setId] = useState(undefined)
+
+  const changeId = (bookId) => {
+    setId(bookId)
   }
 
-  changeId = (bookId) => {
-    this.setState({...this.state, id: bookId})
+ const handleChange = value => {
+    setBookTitle(value)
   }
 
-  handleChange = value => {
-    this.setState({ ...this.state, bookTitle: value })
-  }
-
-  render() {
     return (
       <Container style={{padding: '0px', margin: 'auto', paddingBottom:'100px'}}>
         <>
           <InputGroup size="sm" className="mb-3 m-auto">
             <FormControl
-              onChange={e => this.handleChange(e.target.value)}
+              onChange={e => handleChange(e.target.value)}
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               placeholder='search for book title'
@@ -34,19 +34,18 @@ export default class BookWrapper extends Component {
           </InputGroup>
         </>
         <Row className='m-auto'>
-        <CommentArea branding2={this.state.id}/>
+        <CommentArea branding2={id}/>
           {books
             .filter(book =>
               book.title
                 .toLowerCase()
-                .includes(this.state.bookTitle.toLowerCase())
+                .includes(bookTitle.toLowerCase())
             )
             .map(book => {
-              return <Book bookData={book} key={book.asin} function={this.changeId}/>
+              return <Book bookData={book} key={book.asin} function={changeId}/>
             })}
             
         </Row>
       </Container>
     )
-  }
 }

@@ -1,41 +1,39 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Col } from 'react-bootstrap'
 import MyBadge from './MyBadge'
 import './Book.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import CommentArea from './CommentArea'
+// import CommentArea from './CommentArea'
 
-export default class Book extends Component {
+export default function Book (props) {
 
-  state = {
-    selected: false,
-  }
 
-  handleClick = () => { this.setState({ selected: !this.state.selected })  }
+  const [selected, setSelected] = useState(false)
+
+  const handleClick = () => {setSelected(!selected )}
 
   // handleColorChange = (e) => {
   //   this.state.selected === false ? e.currentTarget.style.backgroundColor = 'coral' : e.currentTarget.style.backgroundColor = '#212529'
   // }
 
-  render() {
     return (
       <Col
         xs={12}
         md={4}
         className="m-auto mb-3 card-container"
-        onClick={this.handleColorChange}
+        // onClick={this.handleColorChange}
       >
-        <div className="card bg-dark m-auto" onClick={this.handleClick}>
+        <div className="card bg-dark m-auto" onClick={handleClick}>
 
           <MyBadge branding="Delete Book" color="dark" className="badge" />
           <img
             className="d-block img-fluid img"
-            src={this.props.bookData.img}
-            alt={this.props.bookData.title}
-            onClick={(e) => this.props.function(this.props.bookData.asin)}
+            src={props.bookData.img}
+            alt={props.bookData.title}
+            onClick={(e) => props.function(props.bookData.asin)}
           />
-          <h4 className="bg-dark text-light">{this.props.bookData.title}</h4>
-          <h6 className="bg-dark text-light">{this.props.bookData.asin}</h6>
+          <h4 className="bg-dark text-light">{props.bookData.title}</h4>
+          <h6 className="bg-dark text-light">{props.bookData.asin}</h6>
         </div>
         {/* <div>
         {this.state.selected === true &&(
@@ -44,4 +42,4 @@ export default class Book extends Component {
       </Col>
     )
   }
-}
+
